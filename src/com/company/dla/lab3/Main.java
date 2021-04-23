@@ -18,6 +18,7 @@ public class Main {
           try {
               System.out.println("Введите дейфтвие [+ - * / ! q]:");
               //userInput = scanner.nextLine();
+
               String userInput = scanner.next();
 
               if ("q".equals(userInput)){
