@@ -14,9 +14,9 @@ public class Main {
         //String userInput = "";
 
         //while (!"q".equals(userInput)){
-        while (0 == 0) {
+        while (true) {
           try {
-              System.out.println("Введите дейфтвие [+ - * / ! q]:");
+              System.out.println("Введите дейcтвие [+ - * / ! q]:");
               //userInput = scanner.nextLine();
 
               String userInput = scanner.next();
@@ -63,6 +63,7 @@ public class Main {
 
           } catch (InputMismatchException ex) {
               System.out.println("Не число! Повторите ввод данных!");
+              scanner.nextLine();
               continue;
             }
         }
