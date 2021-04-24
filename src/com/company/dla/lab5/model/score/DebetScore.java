@@ -39,6 +39,4 @@ public class DebetScore extends Score{
     //    super.addMoney(money);
     //}
 
-
-
 }
