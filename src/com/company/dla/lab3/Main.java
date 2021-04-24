@@ -14,56 +14,57 @@ public class Main {
         //String userInput = "";
 
         //while (!"q".equals(userInput)){
-        while (0 == 0) {
-          try {
-              System.out.println("Введите дейфтвие [+ - * / ! q]:");
-              //userInput = scanner.nextLine();
+        while (true) {
+            try {
+                System.out.println("Введите дейcтвие [+ - * / ! q]:");
+                //userInput = scanner.nextLine();
 
-              String userInput = scanner.next();
+                String userInput = scanner.next();
 
-              if ("q".equals(userInput)){
-                  break;
-              }
+                if ("q".equals(userInput)){
+                    break;
+                }
 
-              System.out.println("Введите числа:");
-              int firstNumber = scanner.nextInt();
+                System.out.println("Введите числа:");
+                int firstNumber = scanner.nextInt();
 
-              int secondNumber = 0;
-              if (! "!".equals(userInput)){
-                secondNumber = scanner.nextInt();
-              }
+                int secondNumber = 0;
+                if (! "!".equals(userInput)){
+                    secondNumber = scanner.nextInt();
+                }
 
-              double result;
-              switch (userInput) {
-                  case "+":
-                      result = plus(firstNumber, secondNumber);
-                      break;
-                  case "-":
-                      result = minus(firstNumber, secondNumber);
-                      break;
-                  case "*":
-                      result = ymn(firstNumber, secondNumber);
-                      break;
-                  case "/":
-                      if (secondNumber == 0) {
-                         System.out.println("Деление на ноль запрещено!");
-                         continue;
-                      }
-                      result = del(firstNumber, secondNumber);
-                      break;
-                  case "!":
-                      result = factorial(firstNumber);
-                      break;
-                  default:
-                      System.out.println("Некорректная операция!");
-                      result = 0;
-                      break;
-              }
-              System.out.println(result);
+                double result;
+                switch (userInput) {
+                    case "+":
+                        result = plus(firstNumber, secondNumber);
+                        break;
+                    case "-":
+                        result = minus(firstNumber, secondNumber);
+                        break;
+                    case "*":
+                        result = ymn(firstNumber, secondNumber);
+                        break;
+                    case "/":
+                        if (secondNumber == 0) {
+                            System.out.println("Деление на ноль запрещено!");
+                            continue;
+                        }
+                        result = del(firstNumber, secondNumber);
+                        break;
+                    case "!":
+                        result = factorial(firstNumber);
+                        break;
+                    default:
+                        System.out.println("Некорректная операция!");
+                        result = 0;
+                        break;
+                }
+                System.out.println(result);
 
-          } catch (InputMismatchException ex) {
-              System.out.println("Не число! Повторите ввод данных!");
-              continue;
+            } catch (InputMismatchException ex) {
+                System.out.println("Не число! Повторите ввод данных!");
+                scanner.nextLine();
+                continue;
             }
         }
     }
