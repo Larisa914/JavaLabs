@@ -13,7 +13,7 @@ public class CurrentScore extends Score{
 
     public void addMoney(Money money){
         if (money.getValue() > 1000000) {
-           this.debetScore.addMoney(new Money(2000, debetScore.getBalance().getCurrency().getName()));
+           debetScore.addMoney(new Money(2000, debetScore.getBalance().getCurrency().getName()));
         }
         super.addMoney(money);
 
