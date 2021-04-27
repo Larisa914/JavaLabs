@@ -11,24 +11,26 @@ public class Account {
     private String password;
     private Map<Integer, Score> scoreMap;
 
-    public Account(Principal principal, String login, String password){
+    public Account(Principal principal, String login, String password) {
         this.principal = principal;
         this.login = login;
         this.password = password;
         // для scoreMap нужен this?
-        this.scoreMap = new HashMap<Integer, Score>();
+        this.scoreMap = new HashMap<>();
     }
 
-    public Map<Integer, Score> getScoreMap(){
+    public Map<Integer, Score> getScoreMap() {
         return scoreMap;
     }
-    public void setScoreMap(Map<Integer, Score> scoreMap){
+
+    public void setScoreMap(Map<Integer, Score> scoreMap) {
         this.scoreMap = scoreMap;
     }
 
     public Principal getPrincipal() {
         return principal;
     }
+
     public void setPrincipal(Principal principal) {
         this.principal = principal;
     }

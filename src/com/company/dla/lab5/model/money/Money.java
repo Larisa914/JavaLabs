@@ -14,6 +14,7 @@ public class Money {
     public Currency getCurrency() {
         return currency;
     }
+
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
@@ -21,6 +22,7 @@ public class Money {
     public double getValue() {
         return value;
     }
+
     public void setValue(double value) {
         this.value = value;
     }
