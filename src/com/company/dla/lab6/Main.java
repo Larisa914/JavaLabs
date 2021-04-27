@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // write your code here
-        System.out.println("Hello Lab6");
+        System.out.println("Hello Lab6!");
 
         Scanner sc = new Scanner (System.in);
 
@@ -28,7 +28,6 @@ public class Main {
                 continue;
             }
 
-            count++;
             String productName = parts[0];
             Integer productCost;
             Integer productCount;
@@ -41,10 +40,7 @@ public class Main {
                 continue;
             }
 
-            //System.out.println(productName);
-            //System.out.println(productCost);
-            //System.out.println(productCount);
-
+            count++;
             boolean productAlreadyExists = false;
             for (int i = 0; i < 5; i++) {
                 if(productName.equals(masOfProducts[i])){
