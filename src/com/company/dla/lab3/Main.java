@@ -9,29 +9,21 @@ public class Main {
         // 1. Почему userInput = scanner.nextLine(); в некоторых ситуациях считывает пустой символ
         // 2. После эксепшена операция userInput = scanner.next(); также считаывает пустой символ
         //
-        //System.out.println("Hello Lab3");
         Scanner scanner = new Scanner(System.in);
-        //String userInput = "";
-
-        //while (!"q".equals(userInput)){
-        while (true) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                System.out.println("Введите дейcтвие [+ - * / ! q]:");
-                //userInput = scanner.nextLine();
-
+                System.out.println("Введите действие [+ - * / ! q]:");
                 String userInput = scanner.next();
 
-                if ("q".equals(userInput)){
-                    break;
+                if ("q".equals(userInput)) {
+                    throw new ExitException();
                 }
 
                 System.out.println("Введите числа:");
                 int firstNumber = scanner.nextInt();
 
-                int secondNumber = 0;
-                if (! "!".equals(userInput)){
-                    secondNumber = scanner.nextInt();
-                }
+                int secondNumber = "!".equals(userInput) ? 0 : scanner.nextInt();
 
                 double result;
                 switch (userInput) {
@@ -45,10 +37,6 @@ public class Main {
                         result = ymn(firstNumber, secondNumber);
                         break;
                     case "/":
-                        if (secondNumber == 0) {
-                            System.out.println("Деление на ноль запрещено!");
-                            continue;
-                        }
                         result = del(firstNumber, secondNumber);
                         break;
                     case "!":
@@ -64,33 +52,38 @@ public class Main {
             } catch (InputMismatchException ex) {
                 System.out.println("Не число! Повторите ввод данных!");
                 scanner.nextLine();
-                continue;
+            } catch (ArithmeticException ex) {
+                System.out.println("Деление на ноль запрещено!");
+            } catch (ExitException ex) {
+                isExit = true;
             }
         }
     }
 
-    private static int plus (int numberOne, int numberTwo){
+    private static int plus(int numberOne, int numberTwo) {
         return numberOne + numberTwo;
     }
 
-    private static int minus (int numberOne, int numberTwo){
+    private static int minus(int numberOne, int numberTwo) {
         return numberOne - numberTwo;
     }
 
-    private static int ymn (int numberOne, int numberTwo){
+    private static int ymn(int numberOne, int numberTwo) {
         return numberOne * numberTwo;
     }
 
-    private static int del (int numberOne, int numberTwo){
+    private static int del(int numberOne, int numberTwo) {
         return numberOne / numberTwo;
     }
 
-    private static int factorial (int numberOne){
+    private static int factorial(int numberOne) {
         int res = 1;
-        for (int i = 1; i <= numberOne; i++){
-            res*=i;
+        for (int i = 1; i <= numberOne; i++) {
+            res *= i;
         }
         return res;
     }
 
+    private static class ExitException extends Exception {
+    }
 }

@@ -6,7 +6,7 @@ public class Principal {
     private String secondName;
     private short age;
 
-    public Principal(String firstName, String lastName, String secondName, short age){
+    public Principal(String firstName, String lastName, String secondName, short age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.secondName = secondName;
@@ -16,6 +16,7 @@ public class Principal {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -23,6 +24,7 @@ public class Principal {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -30,6 +32,7 @@ public class Principal {
     public String getSecondName() {
         return secondName;
     }
+
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
@@ -37,6 +40,7 @@ public class Principal {
     public short getAge() {
         return age;
     }
+
     public void setAge(short age) {
         this.age = age;
     }

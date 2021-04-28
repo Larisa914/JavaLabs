@@ -16,6 +16,7 @@ public class Operation {
     public OperType getOperType() {
         return operType;
     }
+
     public void setOperType(OperType operType) {
         this.operType = operType;
     }
@@ -23,6 +24,7 @@ public class Operation {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
