@@ -1,5 +1,6 @@
 package com.company.dla.lab8;
 
+//todo неиспользуемые generic типы. Или убрать или генерализовать Entry и HashMapImpl
 public class Entry<K, V> {
     Object key;
     Object val;
@@ -7,35 +8,32 @@ public class Entry<K, V> {
     public Object getKey() {
         return key;
     }
+
     public void setKey(Object key) {
         this.key = key;
     }
+
     public Object getVal() {
         return val;
     }
+
     public void setVal(Object val) {
         this.val = val;
     }
+
+    @Override
     public int hashCode() {
-        int prime = 13;
-        int mul = 11;
-        if (key != null) {
-            int hashCode = prime * mul + key.hashCode();
-            return hashCode;
-        }
-        return 0;
+        return key == null ? 0 : 13 * 11 + key.hashCode();
     }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || this.getClass().getName() != o.getClass().getName()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Entry e = (Entry) o;
-        if (this.key == e.key) {
-            return true;
-        }
-        return false;
+        return this.key == ((Entry) o).key;
     }
 }

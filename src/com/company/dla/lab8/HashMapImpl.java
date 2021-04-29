@@ -1,49 +1,39 @@
 package com.company.dla.lab8;
 
 public class HashMapImpl {
-    private float loadfactor = 0.75f;
-    private int capacity = 100;
+    private static final int CAPACITY = 100;
+    private final Entry[] table = new Entry[CAPACITY];
     private int size = 0;
-    private Entry table[] = new Entry[capacity];
 
-    private int Hashing(int hashCode) {
-        int location = hashCode % capacity;
+    private int hashing(int hashCode) {
+        int location = hashCode % CAPACITY;
         if (location < 0) location = -location;
-        System.out.println("Location:"+location);
+        System.out.println("Location:" + location);
         return location;
     }
 
     public int size() {
-        // TODO Auto-generated method stub
         return this.size;
     }
+
     public boolean isEmpty() {
-        if(this.size == 0) {
-            return true;
-        }
-        return false;
+        return this.size == 0;
     }
 
     public boolean containsKey(Object key) {
-        if(key == null) {
-            if(table[0].getKey() == null) {
+        if (key == null) {
+            if (table[0].getKey() == null) {
                 return true;
             }
         }
-        int location = Hashing(key.hashCode());
-        Entry e = null;
-        try {
-            e = table[location];
-        }catch(NullPointerException ex) {
-        }
-        if(e!= null && e.getKey() == key) {
-            return true;
-        }
-        return false;
+        int location = hashing(key.hashCode());
+        Entry e = table[location];
+        return e != null && e.getKey() == key;
     }
+
     public boolean containsValue(Object value) {
-        for(int i=0; i<table.length;i++) {
-            if(table[i] != null && table[i].getVal() == value) {
+        for (Entry entry : table) {
+            if (entry != null && entry.getVal() == value) {
                 return true;
             }
         }
@@ -51,28 +41,19 @@ public class HashMapImpl {
     }
 
     public Object get(Object key) {
-        Object ret = null;
-        if(key == null) {
-            Entry e = null;
-            try{
-                e = table[0];
-            }catch(NullPointerException ex) {
-            }
-            if(e != null) {
+        if (key == null) {
+            Entry e = table[0];
+            if (e != null) {
                 return e.getVal();
             }
         } else {
-            int location = Hashing(key.hashCode());
-            Entry e = null;
-            try{
-                e = table[location];
-            }catch(NullPointerException ex) {
-            }
-            if(e!= null && key.equals(e.getKey())) { //
+            int location = hashing(key.hashCode());
+            Entry e = table[location];
+            if (e != null && key.equals(e.getKey())) { //
                 return e.getVal();
             }
         }
-        return ret;
+        return null;
     }
 
     public Object put(Object key, Object val) {
@@ -81,29 +62,23 @@ public class HashMapImpl {
             ret = putForNullKey(val);
             return ret;
         } else {
-            int location = Hashing(key.hashCode());
-            if(location >= capacity) {
+            int location = hashing(key.hashCode());
+            if (location >= CAPACITY) {
                 System.out.println("Rehashing required");
                 return null;
             }
-            Entry e = null;
-            try{
-                e = table[location];
-            }catch(NullPointerException ex) {
-            }
-            if (e!= null && e.getKey() == key) {
+            Entry e = table[location];
+            if (e != null && e.getKey() == key) {
                 // корзинка занята и ключ совпал
                 ret = e.getVal();
                 table[location].setVal(val);
-                System.out.println("Для ключа "+ table[location].getKey()+" изменео значение на: "+ table[location].getVal());
-                System.out.println("Старое значение: "+ ret);
-            } else if (e!= null && e.getKey() != key){
+                System.out.println("Для ключа " + table[location].getKey() + " изменео значение на: " + table[location].getVal());
+                System.out.println("Старое значение: " + ret);
+            } else if (e != null && e.getKey() != key) {
                 System.out.println("Локация использована!");
-                System.out.println("Одновременная обработка ключей "+ key+" и "+ e.getKey()+ " невозможна");
+                System.out.println("Одновременная обработка ключей " + key + " и " + e.getKey() + " невозможна");
                 return null;
-            }
-            else
-            {
+            } else {
                 Entry eNew = new Entry();
                 eNew.setKey(key);
                 eNew.setVal(val);
@@ -115,11 +90,7 @@ public class HashMapImpl {
     }
 
     private Object putForNullKey(Object val) {
-        Entry e = null;
-        try {
-            e = table[0];
-        }catch(NullPointerException ex) {
-        }
+        Entry e = table[0];
         Object ret = null;
         if (e != null && e.getKey() == null) {
             ret = e.getVal();
@@ -136,9 +107,10 @@ public class HashMapImpl {
     }
 
     public Object remove(Object key) {
-        int location = Hashing(key.hashCode());
+        int location = hashing(key.hashCode());
         Object ret = null;
-        if(table[location].getKey() == key) {
+        if (table[location].getKey() == key) {
+            ret = table[location].getVal();
             table[location] = null;
             size--;
         }
