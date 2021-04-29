@@ -8,6 +8,7 @@ public class HashMapImpl {
 
     private int Hashing(int hashCode) {
         int location = hashCode % capacity;
+        if (location < 0) location = -location;
         System.out.println("Location:"+location);
         return location;
     }
@@ -67,7 +68,7 @@ public class HashMapImpl {
                 e = table[location];
             }catch(NullPointerException ex) {
             }
-            if(e!= null && e.getKey() == key) {
+            if(e!= null && key.equals(e.getKey())) { //
                 return e.getVal();
             }
         }
@@ -91,8 +92,18 @@ public class HashMapImpl {
             }catch(NullPointerException ex) {
             }
             if (e!= null && e.getKey() == key) {
+                // корзинка занята и ключ совпал
                 ret = e.getVal();
-            } else {
+                table[location].setVal(val);
+                System.out.println("Для ключа "+ table[location].getKey()+" изменео значение на: "+ table[location].getVal());
+                System.out.println("Старое значение: "+ ret);
+            } else if (e!= null && e.getKey() != key){
+                System.out.println("Локация использована!");
+                System.out.println("Одновременная обработка ключей "+ key+" и "+ e.getKey()+ " невозможна");
+                return null;
+            }
+            else
+            {
                 Entry eNew = new Entry();
                 eNew.setKey(key);
                 eNew.setVal(val);
@@ -128,9 +139,8 @@ public class HashMapImpl {
         int location = Hashing(key.hashCode());
         Object ret = null;
         if(table[location].getKey() == key) {
-            for(int i=location; i<table.length;i++) {
-                table[i] = table[i+1];
-            }
+            table[location] = null;
+            size--;
         }
         return ret;
     }
