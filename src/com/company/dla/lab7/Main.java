@@ -3,16 +3,16 @@ package com.company.dla.lab7;
 public class Main {
     public static void main(String[] args) {
         // write your code here
-        System.out.println("Hellow, Lab7!");
+        System.out.println("Hello, Lab7!");
         MyArrayList<String> list = new MyArrayList<>();
-        Init.init12(list);
+        Init.addTwelveElementsTo(list);
 
         System.out.println("размер 12, длина 16");
         System.out.println(list.get(10));
         System.out.println(list.size());
         System.out.println(list.length());
 
-        Init.init4(list, "y");
+        Init.addFourElementsWithSuffixTo(list, "y");
         System.out.println("добавили 4 элемента, размер 16, длина увеличилась до 32");
         System.out.println(list.size());
         System.out.println(list.length());
@@ -34,8 +34,8 @@ public class Main {
         System.out.println(list.size());
         System.out.println(list.length());
 
-        Init.init4(list, "r");
-        Init.init4(list, "u");
+        Init.addFourElementsWithSuffixTo(list, "r");
+        Init.addFourElementsWithSuffixTo(list, "u");
         System.out.println("добавили 8 элементов, размер 15, длина 16");
         System.out.println(list.size());
         System.out.println(list.length());
