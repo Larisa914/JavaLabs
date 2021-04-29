@@ -1,30 +1,33 @@
 package com.company.dla.lab10;
 
-public class GenericListAgregator<T extends Number> {
-    T[] arr;
+public class GenericListAggregator<T extends Number> {
+    private final T[] arr;
 
-    public GenericListAgregator(T[] arr) {
+    public GenericListAggregator(T[] arr) {
         if (arr == null) {
             throw new IllegalStateException("Массив не должен быть null");
         }
         this.arr = arr;
     }
-    public double getAvgValue(){
+
+    public double getAvgValue() {
         double sum = 0.0;
-        for (int i = 0; i < arr.length; i++){
-            sum += arr[i].doubleValue();
+        for (T t : arr) {
+            sum += t.doubleValue();
         }
-        return sum/arr.length;
+        return sum / arr.length;
     }
-    public double getMaxValue(){
+
+    public double getMaxValue() {
         double maxValue = arr[0].doubleValue();
-        for (int i = 1; i < arr.length; i++){
-            if (arr[i].doubleValue() > maxValue){
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i].doubleValue() > maxValue) {
                 maxValue = arr[i].doubleValue();
             }
         }
         return maxValue;
     }
+
     public double getMinValue() {
         double minValue = arr[0].doubleValue();
         for (int i = 1; i < arr.length; i++) {
