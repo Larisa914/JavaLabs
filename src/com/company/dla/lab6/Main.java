@@ -9,21 +9,21 @@ public class Main {
         // write your code here
         System.out.println("Hello Lab6!");
 
-        Scanner sc = new Scanner (System.in);
+        Scanner sc = new Scanner(System.in);
 
         String[] masOfProducts = new String[5];
-        Integer[] masOfCosts = new Integer [5];
+        Integer[] masOfCosts = new Integer[5];
         Integer[] masOfCounts = new Integer[5];
 
         int count = 0;
         int len = 0;
-        while(sc.hasNext() && count < 5) {
+        while (sc.hasNext() && count < 5) {
             String s = sc.nextLine();
-            if("q".equals(s)) {
+            if ("q".equals(s)) {
                 break;
             }
             String[] parts = s.split(" ");
-            if(parts.length != 3){
+            if (parts.length != 3) {
                 System.out.println("Wrong number of arguments! Retry!");
                 continue;
             }
@@ -34,7 +34,7 @@ public class Main {
             try {
                 productCost = Integer.parseInt(parts[1]);
                 productCount = Integer.parseInt(parts[2]);
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Retry!");
                 continue;
@@ -43,8 +43,7 @@ public class Main {
             count++;
             boolean productAlreadyExists = false;
             for (int i = 0; i < 5; i++) {
-                if(productName.equals(masOfProducts[i])){
-                    //System.out.println(productName);
+                if (productName.equals(masOfProducts[i])) {
                     masOfCosts[i] = productCost;
                     masOfCounts[i] += productCount;
                     productAlreadyExists = true;
@@ -52,11 +51,10 @@ public class Main {
                 }
             }
 
-            if(!productAlreadyExists) {
+            if (!productAlreadyExists) {
                 len++;
-                //System.out.println("нет такого "+ productName + "  "+ len);
                 for (int i = 0; i < 5; i++) {
-                    if(masOfProducts[i] == null){
+                    if (masOfProducts[i] == null) {
                         masOfProducts[i] = productName;
                         masOfCosts[i] = productCost;
                         masOfCounts[i] = productCount;
@@ -64,7 +62,7 @@ public class Main {
                     }
                 }
             }
-            if (count == 5){
+            if (count == 5) {
                 break;
             }
         }
@@ -99,8 +97,8 @@ public class Main {
         for (int j = 0; j < 3; j++) {
             int indexOfMostPopularProduct = 0;
             for (int i = 0; i < len; i++) {
-                if(masOfCounts[i] >
-                        masOfCounts[indexOfMostPopularProduct]){
+                if (masOfCounts[i] >
+                        masOfCounts[indexOfMostPopularProduct]) {
                     indexOfMostPopularProduct = i;
                 }
             }
