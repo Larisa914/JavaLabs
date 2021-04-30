@@ -1,8 +1,11 @@
-package com.company.dla.lab5.model.score;
+package com.company.dla.lab11.model.score;
 
-import com.company.dla.lab5.model.account.Account;
-import com.company.dla.lab5.model.money.Money;
+import com.company.dla.lab11.Loggable;
+import com.company.dla.lab11.model.account.Account;
+import com.company.dla.lab11.model.money.Money;
 
+@Loggable
+@OperationLimit(limit = 4)
 public class DebitScore extends Score {
     private final CreditScore creditScore;
 
@@ -10,9 +13,12 @@ public class DebitScore extends Score {
         super(balance, owner, number);
         this.creditScore = creditScore;
     }
+
+
     public CreditScore getCreditScore() {
         return creditScore;
     }
+
     //проверка доступа к операциям по счету
     //Наличие кредитного счета с балансом менее минус 20 000 запрещает
     //работу с дебетовым счетом
@@ -24,7 +30,7 @@ public class DebitScore extends Score {
         }
         return true;
     }
-
+    @MethodLimit(limit= 4)
     public Money getMoney(double balanceLess) {
         // проверка баланса кредитного счета
         if (!checkBefore()) {
@@ -37,4 +43,13 @@ public class DebitScore extends Score {
         return super.getMoney(balanceLess);
     }
 
+    @MethodLimit(limit = 4)
+    public Money getMoneyWithoutLess(){
+        return super.getMoneyWithoutLess();
+    }
+
+    @MethodLimit(limit = 4)
+    public void addMoney(Money money) {
+        super.addMoney(money);
+    }
 }
