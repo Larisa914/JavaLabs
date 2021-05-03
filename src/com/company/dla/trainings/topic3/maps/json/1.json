@@ -1,0 +1,19 @@
+{
+  "address": "Street 10, flat 2",
+  "name": "Bill",
+  "age": "13",
+  "friends": [
+    {
+      "name": "Bill"
+    },
+    {
+      "name": "Matt"
+    },
+    {
+      "name": "Sancho"
+    },
+    {
+      "name": "Bill"
+    }
+  ]
+}
